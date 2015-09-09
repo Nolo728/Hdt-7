@@ -1,0 +1,18 @@
+package Huffman;
+/*
+Manolo Benegas 14180
+Daniel Garcia 14152
+Hoja de Trabajo 7
+ArbolHuffman
+*/
+import java.util.*;
+ 
+abstract class ArbolHuffman implements Comparable<ArbolHuffman> {
+    public final int frecuencia; 
+    public ArbolHuffman(int frec) { frecuencia = frec; }
+ 
+    public int compareTo(ArbolHuffman tree) {
+        return frecuencia - tree.frecuencia;
+    }
+}
+
