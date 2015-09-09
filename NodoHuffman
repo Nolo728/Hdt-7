@@ -1,0 +1,17 @@
+package Huffman;
+/*
+Manolo Benegas 14180
+Daniel Garcia 14152
+Hoja de Trabajo 7
+ArbolHuffman
+*/
+class NodoHuffman extends ArbolHuffman {
+    public final ArbolHuffman left, right; // subtrees
+ 
+    public NodoHuffman(ArbolHuffman l, ArbolHuffman r) {
+        super(l.frecuencia + r.frecuencia);
+        left = l;
+        right = r;
+    }
+}
+ 
