@@ -1,0 +1,16 @@
+package Huffman;
+/*
+Manolo Benegas 14180
+Daniel Garcia 14152
+Hoja de Trabajo 7
+ArbolHuffman
+ */
+class HojaHuffman extends ArbolHuffman {
+    public char valor; 
+ 
+    public HojaHuffman(int frec, char val) {
+        super(frec);
+        valor = val;
+    }
+}
+ 
