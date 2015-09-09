@@ -1,0 +1,66 @@
+package Huffman;
+/*
+Manolo Benegas 14180
+Daniel Garcia 14152
+Hoja de Trabajo 7
+ArbolHuffman
+ */
+import java.util.PriorityQueue;
+
+public class main{
+ 
+    public static ArbolHuffman buildTree(int[] charFreqs) {
+        PriorityQueue<ArbolHuffman> arbols = new PriorityQueue<ArbolHuffman>();
+
+        for (int i = 0; i < charFreqs.length; i++)
+            if (charFreqs[i] > 0)
+                arbols.offer(new HojaHuffman(charFreqs[i], (char)i));
+ 
+        assert arbols.size() > 0;
+   
+        while (arbols.size() > 1) {
+   
+            ArbolHuffman a = arbols.poll();
+            ArbolHuffman b = arbols.poll();
+
+            arbols.offer(new NodoHuffman(a, b));
+        }
+        return arbols.poll();
+    }
+ 
+    public static void printCodes(ArbolHuffman arbol, StringBuffer prefijo) {
+        assert arbol != null;
+        if (arbol instanceof HojaHuffman) {
+            HojaHuffman hoja = (HojaHuffman)arbol;
+ 
+            
+            System.out.println(hoja.valor + "       \t" + hoja.frecuencia + "       \t" + prefijo);
+              
+        } else if (arbol instanceof NodoHuffman) {
+            NodoHuffman node = (NodoHuffman)arbol;
+ 
+            prefijo.append('0');
+            printCodes(node.left, prefijo);
+            prefijo.deleteCharAt(prefijo.length()-1);
+ 
+            prefijo.append('1');
+            printCodes(node.right, prefijo);
+            prefijo.deleteCharAt(prefijo.length()-1);
+        }
+    }
+ 
+    public static void main(String[] args) {
+        String test = "asdfghjklñasdfghjklxcvbnsdferasdfghj";
+ 
+        int[] charFreqs = new int[256];
+
+        for (char c : test.toCharArray())
+            charFreqs[c]++;
+ 
+
+        ArbolHuffman arbol = buildTree(charFreqs);
+ 
+        System.out.println("Caracter\tFrecuencia\tCódigo");
+        printCodes(arbol, new StringBuffer());
+    }
+}
